@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Download, Plus, Minus } from "lucide-react";
+import { ArrowLeft, Download } from "lucide-react";
 
 const products = [
   {
@@ -109,7 +109,6 @@ export default function ProductDetailPage({ params }) {
     typeof params.then === "function" ? React.use(params) : params;
   const id = parseInt(actualParams.id, 10);
   const product = products.find((p) => p.id === id);
-  const [quantity, setQuantity] = React.useState(1);
 
   if (!product) {
     return (
@@ -242,27 +241,6 @@ export default function ProductDetailPage({ params }) {
               </ul>
             </div>
             <div className="space-y-3 sm:space-y-4">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <button
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
-                  disabled={quantity <= 1}
-                >
-                  <Minus className="w-3 h-3 sm:w-4 sm:h-4 text-black" />
-                </button>
-                <span className="text-lg sm:text-xl font-semibold min-w-[1.5rem] sm:min-w-[2rem] text-center text-black">
-                  {quantity}
-                </span>
-                <button
-                  onClick={() => setQuantity((q) => q + 1)}
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100"
-                >
-                  <Plus className="w-3 h-3 sm:w-4 sm:h-4 text-black" />
-                </button>
-                <span className="text-blue-600 font-semibold cursor-pointer hover:underline text-sm sm:text-base">
-                  Add To Cart
-                </span>
-              </div>
               <button className="text-blue-600 font-semibold hover:underline text-sm sm:text-base">
                 + Get A Quote
               </button>
